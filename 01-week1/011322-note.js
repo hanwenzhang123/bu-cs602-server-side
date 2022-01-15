@@ -91,4 +91,14 @@ Stream:
 data from data source -> buffer (collect small chunk of data) -> (when the buffer is full) data passed on and processed -> data send to client
 
 A stream is an abstract interface, Streams can be readable, writable, or both (duplex).
+Things happen in small chunks and able to receive in small chunks (improve performance in async)
 
+source.pipe(destination)
+readable stream: act as the source (receive)
+writable stream: act as the destination (send)
+duplex stream: both readable and writable (like telephone)
+transform stream: special kind of duplex - source.pipe(transform).pipe(destination)
+
+scalibility
+- writable streams must send a signal back to readable streams that they are ready for more data (configurable)
+  
