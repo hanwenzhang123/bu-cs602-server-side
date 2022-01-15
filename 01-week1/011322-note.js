@@ -16,7 +16,6 @@ client (web browser) - web server - application server (application script) - da
 - needs specialized account in application server to do certain things like read or write
 - client is everywhere, privacy is a concern
 
-
 server-side language
 - php 
 - asp.net
@@ -27,13 +26,12 @@ server-side language
 - javascript
 
 
-Module
-- function, object, variables in the global level
-- modules are js files contains encapsulation (private to local)
+Node Module
+- modules are js files with function, object, variables available in the global level
+- modules also contains encapsulation (private to local scope)
+- modules are like pattern
 
 design pattern - facade - only export the data we need
-
-modules are like pattern
 
 require - global function //require("./nameOfTheFile") - implies it is js file 
 
@@ -46,7 +44,7 @@ module.exports = Task;
 import process from "process";
 export default App;
 
-you can create alias to hide the name
+you can create alias to hide the name 
 
 3 tiers - client, server, database
 
@@ -63,5 +61,34 @@ npm - open source modules (good weekly download, strong version)
 express - node build up web server
 
 
+Node Event
+- a signal that something has happened
 
+HTTP to build web server, listen on a given port
+everytime we receive a request on that port, that http class raise an event
+- reading request and returning the right response
+
+//EventEmitter
+const EventEmitter = require("event")   //Class - container for properties and methods
+const emitter = new EventEmitter(); //create the new instance
+
+//register a listen - order important
+emitter.on("messageLogged", function(){})  //name of the event and a callback function or actual listener
+
+//raise an event
+emitter.emit(messageLogged)  //raise an event, make a noise, produce something, signaling something is going to happen
+
+
+Node Stream
+Buffers:
+  - temporary storage spot for a chunk of data that is being transferred from one place to another
+  - the buffer is filled with data, then passed along
+  - transfer small chunks of data at a time
+Stream:
+  - a stream of data that flows overtime from one place to another
+  - can create streams in Node.js to transfer data
+  - increase performance
+data from data source -> buffer (collect small chunk of data) -> (when the buffer is full) data passed on and processed -> data send to client
+
+A stream is an abstract interface, Streams can be readable, writable, or both (duplex).
 
