@@ -1,3 +1,8 @@
+ES6: http://es6-features.org/
+EventEmitter: https://dev.to/ganeshmani/understanding-eventemitter-in-node-js-with-a-usecase-441m
+CommonJS vs. ES modules: https://blog.logrocket.com/commonjs-vs-es-modules-node-js/
+Node Debugger: https://nodejs.org/en/docs/guides/debugging-getting-started/
+
 web port 80 for http and 443 for https (encrypt data from point A to point B)
 
 request response cycle
