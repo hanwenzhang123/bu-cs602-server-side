@@ -60,6 +60,9 @@ express - node build up web server
 
 Node Event
 - a signal that something has happened
+- node js is an event driven system that operates asynchronously so that it just takes requests one by one and processes those requests 
+- some require operation to happen like database, lookup file system operation that get put on a queue to off and execute 
+- and once execute and complete, it let anyone who cares about the operation know that it completes that it can go to do whatever processing it
 
 HTTP to build web server, listen on a given port
 everytime we receive a request on that port, that http class raise an event
