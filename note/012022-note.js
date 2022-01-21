@@ -35,6 +35,7 @@ app.send() - how express writes
 app.use() - has to be the last thing in the express file, order matters
 app.use to build up a web server (building up the middleware)
 apple.use(express.bodyParser()) - body-parser is built in
+app.set() method of the Express enhanced response object like refresh the page every 5 seconds
 
 
 restful end point, restful url
