@@ -1,3 +1,8 @@
+net – for creating TCP based server and clients 
+dgram – for creating UDP/Datagram sockets 
+http – for creating HTTP based web applications 
+https – for creating TLS/SSL clients and servers
+
 Event-Driven
 
 One of Node core strengths: Faster processing
