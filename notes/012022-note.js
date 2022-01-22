@@ -37,9 +37,9 @@ when do not use HTTP module much, instead, express is used popularly
 express - creating web server for js
 defining the route, for route handling, handling all request to like localhost 3000
 app.send() - how express writes
-app.use() - has to be the last thing in the express file, order matters
 app.use to build up a web server (building up the middleware)
-apple.use(express.bodyParser()) - body-parser is built in
+app.use(()=>{res.status(404);res.render("404")}) - has to be the last thing in the express file, order matters
+apple.use(express.bodyParser()) - body-parser is built in function in Express now
 app.set() method of the Express enhanced response object like refresh the page every 5 seconds
 
 
