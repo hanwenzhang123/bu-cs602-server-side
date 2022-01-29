@@ -118,22 +118,21 @@ app.post("/city", (req, res) => {
 
 // Implement the JSON, XML, & HTML formats
 
-app.get("/city/:city/state/:state", (req, res) => {
+app.get("/city/:city/state/:state", async function (req, res) {
   let city = req.params.city;
   let state = req.params.state;
+  let result = await cities.lookupByCityState(city, state);
   res.format({
     "application/json": () => {
-      res.json(cities.lookupByCityState(city, state));
+      res.json(result);
     },
 
     "text/html": () => {
-      const result = cities.lookupByCityState(city, state);
       res.type("text/html");
       res.render("lookupByCityStateView", result);
     },
 
     "application/xml": () => {
-      const result = cities.lookupByCityState(city, state);
       let resultXML =
         '<?xml version="1.0"?>\n' +
         '<city-state city="' +
