@@ -89,7 +89,6 @@ app.get("/zip/:id", (req, res) => {
 });
 
 app.get("/city", (req, res) => {
-  res.render("lookupByCityStateForm");
   const city = req.query.city;
   const state = req.query.state;
   if (city && state) {
@@ -100,8 +99,9 @@ app.get("/city", (req, res) => {
       res.status(404);
       res.render("404");
     }
+  } else {
+    res.render("lookupByCityStateForm");
   }
-  res.render("lookupByCityStateForm");
 });
 
 app.post("/city", (req, res) => {
@@ -168,21 +168,20 @@ app.get("/pop", (req, res) => {
 
 // Implement the JSON, XML, & HTML formats
 
-app.get("/pop/:state", (req, res) => {
+app.get("/pop/:state", async function (req, res) {
   let state = req.params.state;
+  let result = await cities.getPopulationByState(state);
   res.format({
     "application/json": () => {
-      res.json(cities.getPopulationByState(state));
+      res.json(result);
     },
 
     "text/html": () => {
-      let result = cities.getPopulationByState(state);
       res.type("text/html");
       res.render("populationView", result);
     },
 
     "application/xml": () => {
-      const result = cities.getPopulationByState(state);
       let resultXML =
         '<?xml version="1.0"?>\n' +
         "<response>\n" +
