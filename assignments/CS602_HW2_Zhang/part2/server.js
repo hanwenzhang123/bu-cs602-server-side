@@ -25,7 +25,18 @@ app.get("/", (req, res) => {
 });
 
 app.get("/zip", (req, res) => {
-  res.render("lookupByZipForm");
+  if (req.query.id) {
+    let id = req.query.id;
+    let result = cities.lookupByZipCode(id);
+    if (result) {
+      res.render("lookupByZipView", result);
+    } else {
+      res.status(404);
+      res.render("404");
+    }
+  } else {
+    res.render("lookupByZipForm");
+  }
 });
 
 app.post("/zip", (req, res) => {
@@ -43,30 +54,33 @@ app.post("/zip", (req, res) => {
 
 app.get("/zip/:id", (req, res) => {
   let id = req.params.id;
+  let result = cities.lookupByZipCode(id);
+
   res.format({
     "application/json": () => {
-      res.json(cities.lookupByZipCode(id));
+      res.json(result);
     },
 
     "text/html": () => {
-      let result = cities.lookupByZipCode(id);
       res.type("text/html");
       res.render("lookupByZipView", result);
     },
 
     "application/xml": () => {
-      let result = cities.lookupByZipCode(id);
       let resultXML =
         '<?xml version="1.0"?>\n' +
         '<zipCode id="' +
         result._id +
         '">\n' +
-        ' <state>"' +
+        "   <city>" +
+        result.city +
+        "</city>\n" +
+        "   <state>" +
         result.state +
-        '"</state>\n' +
-        ' <pop>"' +
+        "</state>\n" +
+        "   <pop>" +
         result.pop +
-        '"</pop>\n' +
+        "</pop>\n" +
         "</zipCode>\n";
       res.type("application/xml");
       res.send(resultXML);
@@ -75,6 +89,18 @@ app.get("/zip/:id", (req, res) => {
 });
 
 app.get("/city", (req, res) => {
+  res.render("lookupByCityStateForm");
+  const city = req.query.city;
+  const state = req.query.state;
+  if (city && state) {
+    const result = cities.lookupByCityState(city, state);
+    if (result.data.length > 0) {
+      res.render("lookupByCityStateView", result);
+    } else {
+      res.status(404);
+      res.render("404");
+    }
+  }
   res.render("lookupByCityStateForm");
 });
 
@@ -116,7 +142,7 @@ app.get("/city/:city/state/:state", (req, res) => {
         result.state +
         ">\n" +
         '<data>"' +
-        result.data.map((each) => each.zip, each.pop) +
+        result.data +
         '"</data>\n' +
         "</city-state>\n";
       res.type("application/xml");
@@ -126,7 +152,18 @@ app.get("/city/:city/state/:state", (req, res) => {
 });
 
 app.get("/pop", (req, res) => {
-  res.render("populationForm");
+  if (req.query.state) {
+    let state = req.query.state;
+    let result = cities.getPopulationByState(state);
+    if (result) {
+      res.render("populationView", result);
+    } else {
+      res.status(404);
+      res.render("404");
+    }
+  } else {
+    res.render("populationForm");
+  }
 });
 
 // Implement the JSON, XML, & HTML formats

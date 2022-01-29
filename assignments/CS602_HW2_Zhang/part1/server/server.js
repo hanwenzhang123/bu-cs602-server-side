@@ -12,7 +12,7 @@ const server = net.createServer((socket) => {
   });
 
   // HW Code - Write the following code to process data from client
-
+  //process data from client
   socket.on("data", (data) => {
     let input = data.toString();
     console.log(colors.blue("...Received %s"), input);
@@ -24,7 +24,7 @@ const server = net.createServer((socket) => {
 
     switch (method) {
       case "lookupByZipCode":
-        result = cities.lookupByZipCode(...argument);
+        result = cities.lookupByZipCode(argument[0] || undefined);
         break;
 
       case "lookupByCityState":
@@ -36,10 +36,15 @@ const server = net.createServer((socket) => {
         break;
 
       default:
-        console.log("Something goes wrong!");
+        result = "Invalid Request";
     }
 
     socket.write(JSON.stringify(result));
+  });
+
+  //client close the window
+  socket.on("error", () => {
+    console.log("Client closed...".red);
   });
 });
 
