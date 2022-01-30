@@ -12,7 +12,12 @@ module.exports = async (req, res, next) => {
     lastName: lastName,
   });
 
-  await newEmployee.save();
+  try {
+    await newEmployee.save();
+  } catch (error) {
+    console.log(error);
+    res.render("404");
+  }
 
   res.redirect("/employees");
 };

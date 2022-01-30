@@ -3,9 +3,8 @@ const Employee = employeeDB.getModel();
 
 module.exports = async (req, res, next) => {
   // Fill in the code
-
   try {
-    const id = req.body.id;
+    const id = req.body.id || req.query.id;
     const firstName = req.body.fname;
     const lastName = req.body.lname;
     // await Employee.findOneAndUpdate({ _id: id }, { firstName, lastName });
@@ -21,6 +20,7 @@ module.exports = async (req, res, next) => {
       });
     });
   } catch (error) {
+    console.log(error);
     res.render("404");
   }
 };

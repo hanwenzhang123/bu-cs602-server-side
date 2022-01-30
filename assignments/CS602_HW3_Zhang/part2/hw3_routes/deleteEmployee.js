@@ -3,7 +3,7 @@ const Employee = employeeDB.getModel();
 
 module.exports = async (req, res, next) => {
   // Fill in the code
-  let id = req.params.id;
+  let id = req.params.id || req.query.id;
 
   Employee.findOne({ _id: id }, (err, data) => {
     if (err) res.render("404");

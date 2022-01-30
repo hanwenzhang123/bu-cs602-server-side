@@ -4,7 +4,7 @@ const Employee = employeeDB.getModel();
 module.exports = async (req, res, next) => {
   // Fill in the code
   try {
-    const id = req.body.id;
+    const id = req.body.id || req.query.id;
     // await Employee.findOneAndDelete({ _id: id });
     // res.redirect("/employees");
     Employee.findById(id, (err, employee) => {
@@ -17,6 +17,7 @@ module.exports = async (req, res, next) => {
       });
     });
   } catch (error) {
+    console.log(error);
     res.render("404");
   }
 };
