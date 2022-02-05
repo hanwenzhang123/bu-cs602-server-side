@@ -143,11 +143,11 @@ app.get("/city/:city/state/:state", async function (req, res) {
         ">\n" +
         result.data
           .map((elem) => {
-            let str = "<entry zip= " + elem.zip + " pop = " + elem.pop + " />";
+            let str = "<entry zip= "' + elem.zip + '" pop = "' + elem.pop + '" />";
             return str;
           })
-          .join("\n");
-      ("</city-state>\n");
+          .join("\n") +
+      "</city-state>\n";
       res.type("application/xml");
       res.send(resultXML);
     },
