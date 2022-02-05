@@ -141,10 +141,13 @@ app.get("/city/:city/state/:state", async function (req, res) {
         '" state=" ' +
         result.state +
         ">\n" +
-        '<data>"' +
-        result.data +
-        '"</data>\n' +
-        "</city-state>\n";
+        result.data
+          .map((elem) => {
+            let str = "<entry zip= " + elem.zip + " pop = " + elem.pop + " />";
+            return str;
+          })
+          .join("\n");
+      ("</city-state>\n");
       res.type("application/xml");
       res.send(resultXML);
     },
