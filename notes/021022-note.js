@@ -18,6 +18,14 @@ include once  //only load once
 require once  //only load once
 
 
+object operation ->
+  
+  $dog1 = new Dog();
+  $dog1->setName("Rhett");
+	$dog1->setBreed("Boston Terrier");
+	$dog1->setFriendly(TRUE);
+
+
 //access modifier
 public - can be accessed by other classes
 private - limited the class in which it is declared
