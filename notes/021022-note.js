@@ -9,7 +9,9 @@ class must define the basic building blocks of the objects
 
 instance is when you create something based on that class
   
-constructor -> things you want to assign to your attributes within your class, for immutability if with no setter
+constructor -> things you want to assign to your attributes within your class
+	with constructor, you can set the initial value without using setter
+	for immutability if with no setter
   
 
 include
