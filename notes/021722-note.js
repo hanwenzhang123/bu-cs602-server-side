@@ -1,5 +1,11 @@
-xml - human readable text file
+xml json ajax
+  - data format (xml or json)
+  - used to transmit data back and forth
+  - talk to client and server, comminucate between each other
+xml - convey stored information in human readable text file with customized tags
 json - native to javascript, object literal, data exchange with web services
+
+08:00, final exam using xml or json, either or, not both
 
 json php
 json_encode() -> will output json
