@@ -13,15 +13,12 @@ json_decode() -> you have json doc, will decode back as php
 
 We catch data between client and server through ajax
 
-
 web services are everywhere, every webside uses web services, mostly json
 
-
-soap - no more used, secure data between client and server
+soap - no more used, old api, secure data between client and server
 
 sql injection
 - frontend does not validate the backend
-
 
 session hijacking
 - your session becomes their session
