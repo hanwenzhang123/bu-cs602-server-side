@@ -13,23 +13,36 @@ json_decode() -> you have json doc, will decode back as php
 
 We catch data between client and server through ajax
 
+
 web services are everywhere, every webside uses web services, mostly json
 
-soap - no more used, old api, secure data between client and server
+soap api - no more used, old api, secure data between client and server
 
-sql injection
-- frontend does not validate the backend
+restful api - newer web services, url is indicative of the request itself.
+
+
+sql injection - frontend does not validate the backend
+- a type of attack where malicious user can inject (insert) SQL commands into existing SQL statement via their input to a web form or other method to send data to database
+
+- You have a front end that does not validate the data that is going to your back end 
+so malicious users will put in SQL query language, it would throw it towards your back end 
+hoping that you do not check it and then you know does harm to your database
+
+In the front end there is really never a need for any sequel statements to be used in your text fields or in your text areas.
+You should have validation on your front end that does not allow sequel to be to be typed in.
+
 
 session hijacking
 - your session becomes their session
 - need to expires
-- solution: JWT (encrypted)
+- solution: encryption, JWT (encrypted)
+
 
 captchas
-- way to make sure if a user is an actual human
+- ways to make sure if a user is an actual human
 
 
-xml
+xml - old
 
 fetch (2 steps process with 2 .then())
 fetch(url).then((res) => res.json()).then(data) => console.log(data))
@@ -39,10 +52,8 @@ axios (only 1 .then() needed)
 
 interview question
 what is www-form-urlencoded?
-
+  The application/x-www-form-urlencoded content type describes form data that is sent in a single block in the HTTP message body.
   
 promise.all, one fail all fail?
-  Promise.all is rejected if any of the elements are rejected. 
-  
-  
+- Promise.all is rejected if any of the elements are rejected. 
   
